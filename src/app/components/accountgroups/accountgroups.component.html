@@ -1,0 +1,12 @@
+
+
+
+
+<form [formGroup]="accGroupForm" class="p-3 mt-3">
+    <div class="form-field d-flex align-items-center">
+        <span class="far fa-user"></span>
+        <input formControlName="OAuth" type="text" name="OAuth" id="userName" placeholder="Paste your OAuth"
+            autocomplete="off">
+    </div>
+    <button [disabled]="accGroupForm.invalid" (click)="onSubmit()" type="submit" class="btn mt-3">Next</button>
+</form>
