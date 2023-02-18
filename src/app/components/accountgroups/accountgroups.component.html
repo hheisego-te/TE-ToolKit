@@ -10,3 +10,51 @@
     </div>
     <button [disabled]="accGroupForm.invalid" (click)="onSubmit()" type="submit" class="btn mt-3">Next</button>
 </form>
+
+
+<div *ngFor="let item of accountGroups | orderBy: order; let index = index">
+    <h3 *ngIf="!accountGroups[index-1] || item.organizationName !== accountGroups[index-1].organizationName">{{item.organizationName}}</h3>
+    <input type="radio" name="{{item.organizationName}}" value="{{item.accountGroupName}}" >{{item.accountGroupName}}
+</div>
+
+
+<div class="container mt-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Organization Name</th>
+                <th>Account Group</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of accountGroups; let index = index">
+            
+            <td *ngIf="!accountGroups[index-1] || item.organizationName !== accountGroups[index-1].organizationName">{{item.organizationName}}</td>
+            <td role="button">{{item.accountGroupName}}</td>
+        </tr>   
+        </tbody>
+    </table>
+</div>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+<div class="container mt-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Organization Name</th>
+                <th>Account Group</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let account of accountGroups | orderBy: order ; let index = index">
+                <input type="checkbox" name="{{account.organizationName}}" value="{{[account.accountGroupName]}}" />
+                <td>{{account.organizationName}}</td>
+                <td role="button">{{account.accountGroupName}}</td>
+                <td></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</div>
+
+-->

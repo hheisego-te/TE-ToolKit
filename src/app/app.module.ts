@@ -6,6 +6,7 @@ import { LoginService } from './services/login.service'; //este es el service
 import { AccountgroupsService } from './services/accountgroups.service'; // otro service
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service'; 
+import { OrderModule } from 'ngx-order-pipe';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -33,7 +34,7 @@ import { AccountgroupsComponent } from './components/accountgroups/accountgroups
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
+    OrderModule    
   ],
   providers: [LoginService, 
               CookieService, 
