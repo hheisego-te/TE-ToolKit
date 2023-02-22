@@ -17,6 +17,7 @@ export class AccountgroupsComponent implements OnInit {
   private OAuth: any = '';
   orgName: any = '';
   accountsList: any = [];
+  noTodoList: any = [];
   public accountGroups: any = '';
   public HighlightRow: number = -1;
   selectedRowIds: Set<number> = new Set<number>();
@@ -54,8 +55,9 @@ export class AccountgroupsComponent implements OnInit {
     
     this.orgName = this.accGroup2Form.value.selectedOrg;
     console.log("si llegamos wey")
-    //console.log(this.orgName)
-    //console.log(this.accGroup2Form.value.selectedOrg)
+
+    this.accountsList =  [];
+    this.accGroup2Form.value.selectedAccounts = null;
 
     this.accountGroups.forEach((value: any, index: any) => {
         
@@ -63,15 +65,16 @@ export class AccountgroupsComponent implements OnInit {
         if (value.organizationName === this.orgName){
 
           this.accountsList.push(value);
-          console.log(this.accountsList);
+          
         }
-
 
       });
 
+    
+
   }
 
-  selectRow(index2: number): void {
+  selectRow(index2: number): void { //ya nos podemos deshacer de esta mmda
     console.log('Row: ' + index2);
     this.HighlightRow = index2;
 
@@ -80,18 +83,22 @@ export class AccountgroupsComponent implements OnInit {
 
   onFormSubmit(){
 
+    this.accGroup2Form.value.selectedOrg = null;
+    this.accGroup2Form.value.selectedAccounts = null;
+
+    console.log(this.accGroup2Form.value.selectedAccounts);
 
   }
 
 
 
-  accgrps2table(accGroups: any){
+  accgrps2table(accGroups: any){//esta tambien ya nos la vamos a chngr
 
     this.accountGroups = this.accountGroups.sort((a: any, b: any) => {
       return (b.organizationName) < (a.organizationName);
     });
 
-  }
+  } 
 
   onSubmit() {
 
@@ -111,10 +118,12 @@ export class AccountgroupsComponent implements OnInit {
           
           this.accountGroups = this.accountGroups.sort((a: any, b: any) => a.organizationName > b.organizationName ? 1 : -1);
           
-          //console.log(this.accountGroups);
-          
-          //this.accgrps2table(this.accountGroups);
+          this.noTodoList = this.accountGroups.filter((v: any, i: any, a: any) => a.findIndex((v2: { organizationName: any; }) => (v2.organizationName === v.organizationName)) === i);
 
+          //this.noTodoList = this.accountGroups.filter((v: any, i: any, a: any) => a.findIndex((t: { id: any; }) => t.id === v.id) === i);
+
+
+          console.log(this.noTodoList);
       
         }else{
 

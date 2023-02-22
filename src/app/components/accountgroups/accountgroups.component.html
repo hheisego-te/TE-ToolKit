@@ -1,5 +1,5 @@
 <form [formGroup]="accGroupForm" class="p-3 mt-3">
-    <div class="form-field d-flex align-items-center col-sm-5">
+    <div class="form-field d-flex align-items-center col-md-5">
         <span class="input-group-text" id="basic-addon3">OAuth</span>
         <input formControlName="OAuth" type="text" name="OAuth" id="oath-token" placeholder="Paste your OAuth"
             autocomplete="off" class="form-control" id="basic-addon3" aria-describedby="basic-addon3">
@@ -8,14 +8,14 @@
 </form>
 
 
-<form [formGroup]="accGroup2Form">
+<form [formGroup]="accGroup2Form" (ngSubmit)="onFormSubmit()">
     <table class="table-info table-striped">
         <tr *ngIf="this.accountGroups">
             <td>Select Organization: </td>
             <td>
                 <select formControlName="selectedOrg" (change)="onOrganizationChange()" class="form-select form-select-sm">
                     <option [ngValue]="null" disabled >Choose your Org</option>
-                    <option *ngFor="let org of accountGroups;  let orgg = index" [ngValue]="org.organizationName"> <!--name="selectedOrg" value="{{org.organizationName}}-->
+                    <option *ngFor="let org of noTodoList;  let orgg = index" [ngValue]="org.organizationName"> <!--name="selectedOrg" value="{{org.organizationName}}-->
                         {{ org.organizationName }}
                     </option>
                 </select>
@@ -38,6 +38,10 @@
             </td>
         </tr>
         <tr><td>{{accGroup2Form.value.selectedOrg}}</td></tr>
+
+        <tr *ngIf="accGroup2Form.value.selectedAccounts">
+            <td><button type="submit" class="btn btn-primary">Submit</button></td>
+        </tr>
     </table>
 </form>
 

@@ -63,9 +63,9 @@ export class LoginFormComponent implements OnInit{
 
         } else if (this.login_response['access_token']){
 
-          this.cookie.set("cec", this.login_response['sub']);
-          this.cookie.set("whois", this.login_response['fullname']);
-          this.cookie.set("email", this.login_response['email']);
+          this.cookie.set("cec", this.login_response['sub'], 1);
+          this.cookie.set("whois", this.login_response['fullname'], 1);
+          this.cookie.set("email", this.login_response['email'], 1);
 
           this.router.navigate(['dashboard']);
 
