@@ -1,25 +1,57 @@
-
-
-
-
 <form [formGroup]="accGroupForm" class="p-3 mt-3">
-    <div class="form-field d-flex align-items-center">
-        <span class="far fa-user"></span>
-        <input formControlName="OAuth" type="text" name="OAuth" id="userName" placeholder="Paste your OAuth"
-            autocomplete="off">
+    <div class="form-field d-flex align-items-center col-sm-5">
+        <span class="input-group-text" id="basic-addon3">OAuth</span>
+        <input formControlName="OAuth" type="text" name="OAuth" id="oath-token" placeholder="Paste your OAuth"
+            autocomplete="off" class="form-control" id="basic-addon3" aria-describedby="basic-addon3">
+        <button [disabled]="accGroupForm.invalid" (click)="onSubmit()" type="submit" class="btn btn-primary" id="basic-addon3">Next</button>
     </div>
-    <button [disabled]="accGroupForm.invalid" (click)="onSubmit()" type="submit" class="btn mt-3">Next</button>
 </form>
 
 
-<div *ngFor="let item of accountGroups | orderBy: order; let index = index">
-    <h3 *ngIf="!accountGroups[index-1] || item.organizationName !== accountGroups[index-1].organizationName">{{item.organizationName}}</h3>
-    <input type="radio" name="{{item.organizationName}}" value="{{item.accountGroupName}}" >{{item.accountGroupName}}
-</div>
+<form [formGroup]="accGroup2Form">
+    <table class="table-info table-striped">
+        <tr *ngIf="this.accountGroups">
+            <td>Select Organization: </td>
+            <td>
+                <select formControlName="selectedOrg" (change)="onOrganizationChange()" class="form-select form-select-sm">
+                    <option [ngValue]="null" disabled >Choose your Org</option>
+                    <option *ngFor="let org of accountGroups;  let orgg = index" [ngValue]="org.organizationName"> <!--name="selectedOrg" value="{{org.organizationName}}-->
+                        {{ org.organizationName }}
+                    </option>
+                </select>
+                <div *ngIf="accGroup2Form.invalid && accGroup2Form.dirty" class="error">
+                    Select acc
+                </div>
+            </td>
+        </tr>
+        <tr *ngIf="accGroup2Form.value.selectedOrg">
+            <td>Select Account Groups: </td>
+            <td>
+                <select multiple formControlName="selectedAccounts" class="form-select form-select-sm">
+                    <option *ngFor="let acc of accountsList" [ngValue]="acc">
+                        {{ acc.accountGroupName }}
+                    </option>
+                </select>
+                <div *ngIf="accGroup2Form.invalid && accGroup2Form.dirty" class="error">
+                    Press Control to select multiple account groups
+                </div>
+            </td>
+        </tr>
+        <tr><td>{{accGroup2Form.value.selectedOrg}}</td></tr>
+    </table>
+</form>
 
 
-<div class="container mt-5">
-    <table class="table table-striped">
+
+
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+| orderBy: order;
+
+
+
+<div class="container col-12">
+    <table class="table-info table-striped">
         <thead>
             <tr>
                 <th>Organization Name</th>
@@ -27,15 +59,27 @@
             </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of accountGroups; let index = index">
-            
-            <td *ngIf="!accountGroups[index-1] || item.organizationName !== accountGroups[index-1].organizationName">{{item.organizationName}}</td>
-            <td role="button">{{item.accountGroupName}}</td>
-        </tr>   
+            <tr *ngFor="let item of accountGroups; let index = index; let index2 = index;" 
+                (click)="selectRow(index2)" 
+                [class.selected]= "index2 == HighlightRow"
+                [style.background-color]="index2 == HighlightRow ? 'gray' : 'white'">
+                <td [attr.rowspan]="accountGroups[index-1]">checkbox</td>
+                <td >{{item.organizationName}}</td>
+                <td role="button" >{{item.accountGroupName}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+
+
+
+[attr.rowspan]="item.accountGroupName.length + 1"
+
+*ngIf="!accountGroups[index-1] || item.organizationName !== accountGroups[index-1].organizationName"
+
+
+    <input type="checkbox" name="{{item.organizationName}}" value="{{item.accountGroupName}}" />{{item.accountGroupName}}
 <div class="container mt-5">
     <table class="table table-striped">
         <thead>
@@ -56,5 +100,33 @@
         </tbody>
     </table>
 </div>
+
+
+
+
+
+<div *ngFor="let item of accountGroups | orderBy: order; let index = index">
+    <h3 *ngIf="!accountGroups[index-1] || item.organizationName !== accountGroups[index-1].organizationName">
+        {{item.organizationName}}</h3>
+    <input type="radio" name="{{item.organizationName}}" value="{{item.accountGroupName}}" />{{item.accountGroupName}}
+</div>
+
+
+
+
+            <ng-container *ngFor="let item of accountGroups; let index = index">
+                <tr>
+            
+                    <td [attr.rowspan]="item.organizationName.length +1 "
+                        *ngIf="!accountGroups[index-1] || item.organizationName !== accountGroups[index-1].organizationName"
+                        role="button">
+                        {{item.organizationName}}
+                    </td>
+                    <td>{{item.accountGroupName}}</td>
+            
+                </tr>
+            </ng-container>
+
+
 
 -->
