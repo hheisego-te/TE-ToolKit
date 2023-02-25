@@ -57,7 +57,7 @@ export class AccountgroupsComponent implements OnInit {
     console.log("si llegamos wey")
 
     this.accountsList =  [];
-    this.accGroup2Form.value.selectedAccounts = null;
+    this.accGroup2Form.value.selectedAccounts = '';
 
     this.accountGroups.forEach((value: any, index: any) => {
         
@@ -83,8 +83,8 @@ export class AccountgroupsComponent implements OnInit {
 
   onFormSubmit(){
 
-    this.accGroup2Form.value.selectedOrg = null;
-    this.accGroup2Form.value.selectedAccounts = null;
+    this.accGroup2Form.value.selectedOrg = '';
+    //this.accGroup2Form.value.selectedAccounts = null;
 
     console.log(this.accGroup2Form.value.selectedAccounts);
 
