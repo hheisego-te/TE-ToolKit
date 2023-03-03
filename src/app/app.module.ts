@@ -15,6 +15,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AccountgroupsComponent } from './components/accountgroups/accountgroups.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { AhcComponent } from './components/ahc/ahc.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { AccountgroupsComponent } from './components/accountgroups/accountgroups
     NavbarComponent,
     LoginFormComponent,
     DashboardComponent,
-    AccountgroupsComponent
+    AccountgroupsComponent,
+    MenuComponent,
+    AhcComponent
    
   ],
   imports: [

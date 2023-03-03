@@ -21,6 +21,7 @@
     "@popperjs/core": "^2.11.6",
     "@sweetalert2/themes": "^5.0.15",
     "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.3",
     "buffer": "^6.0.3",
     "ngx-cookie-service": "^15.0.0",
     "ngx-order-pipe": "^2.2.0",

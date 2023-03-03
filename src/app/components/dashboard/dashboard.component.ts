@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
 
 
   constructor(private cookie: CookieService,
-              private router: Router,){}
+              private router: Router){}
 
 
   ngOnInit(): void {

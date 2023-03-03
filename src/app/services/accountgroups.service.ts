@@ -19,7 +19,6 @@ export class AccountgroupsService {
 
   getAccountGroups(OAuth: any): Observable<any> {
 
-    console.log(OAuth)
     return this.http.put(this.APIurl, OAuth);
 
   }
