@@ -31,7 +31,7 @@ export class AhcComponent implements OnInit {
   ngOnInit(): void {
 
 
-    if (this.cookie.check('cec') && this.cookie.get('whois')) {
+    if (this.cookie.check('cec') && this.cookie.check('whois')) {
 
       this.refreshReports();
 
@@ -39,9 +39,7 @@ export class AhcComponent implements OnInit {
 
       this.router.navigate(['']);
 
-
     }
-
 
   }
 

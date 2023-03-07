@@ -41,9 +41,9 @@
                         </div>
                     </td>
                 </tr>
-                <!-- <tr *ngIf="accGroup2Form.value.selectedAccounts">
+                <tr *ngIf="accGroup2Form.value.selectedAccounts">
                     <td><button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button></td>
-                </tr>-->
+                </tr>
             </table>
         </form>
 
@@ -53,8 +53,8 @@
 <div class="modal-footer">
 
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Cancelar </button>
-    <button *ngIf="accGroup2Form.value.selectedAccounts" type="submit" class="btn btn-primary"
-        data-bs-dismiss="modal">Submit</button>
+    <!-- <button *ngIf="accGroup2Form.value.selectedAccounts" type="submit" class="btn btn-primary"
+        data-bs-dismiss="modal">Submit</button> -->
 </div>
 
 

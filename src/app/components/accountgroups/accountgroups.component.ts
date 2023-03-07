@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountgroupsService } from 'src/app/services/accountgroups.service';
 import { OrderPipe } from 'ngx-order-pipe';
@@ -11,10 +11,12 @@ import Swal from 'sweetalert2';
 })
 export class AccountgroupsComponent implements OnInit {
 
+  @Input() mission = ''; 
 
   accGroupForm!: FormGroup;
   accGroup2Form!: FormGroup;
   taskMission: boolean = true;
+  
   private OAuth: any = '';
   orgName: any = '';
   accountsList: any = [];
@@ -23,6 +25,7 @@ export class AccountgroupsComponent implements OnInit {
   public HighlightRow: number = -1;
   selectedRowIds: Set<number> = new Set<number>();
   order: string = 'organizationName';
+  private reportRequest: any = [];
 
 
 
@@ -80,7 +83,11 @@ export class AccountgroupsComponent implements OnInit {
   onFormSubmit(){
 
     //this.accGroup2Form.value.selectedOrg = '';
-    console.log(this.accGroup2Form.value.selectedAccounts);
+    
+    this.reportRequest = this.accGroup2Form.value.selectedAccounts;
+    this.reportRequest.mission = this.mission;
+    console.log(this.mission);
+    console.log(this.reportRequest);
     this.noTodoList = ["Issue new OAuth"];
     this.accGroupForm.reset();
     this.accGroup2Form.reset();
@@ -123,8 +130,6 @@ export class AccountgroupsComponent implements OnInit {
 
           //this.noTodoList = this.accountGroups.filter((v: any, i: any, a: any) => a.findIndex((t: { id: any; }) => t.id === v.id) === i);
 
-
-          //console.log(this.noTodoList);
       
         }else{
 
