@@ -14,6 +14,7 @@ export class AccountgroupsComponent implements OnInit {
 
   accGroupForm!: FormGroup;
   accGroup2Form!: FormGroup;
+  taskMission: boolean = true;
   private OAuth: any = '';
   orgName: any = '';
   accountsList: any = [];
@@ -57,7 +58,7 @@ export class AccountgroupsComponent implements OnInit {
     console.log("si llegamos wey")
 
     this.accountsList =  [];
-    this.accGroup2Form.value.selectedAccounts = '';
+    //this.accGroup2Form.value.selectedAccounts = [];
 
     this.accountGroups.forEach((value: any, index: any) => {
         
@@ -68,37 +69,37 @@ export class AccountgroupsComponent implements OnInit {
           
         }
 
+
       });
 
     
 
   }
 
-  selectRow(index2: number): void { //ya nos podemos deshacer de esta mmda
-    console.log('Row: ' + index2);
-    this.HighlightRow = index2;
-
-  }
-
 
   onFormSubmit(){
 
-    this.accGroup2Form.value.selectedOrg = '';
-    //this.accGroup2Form.value.selectedAccounts = null;
-
+    //this.accGroup2Form.value.selectedOrg = '';
     console.log(this.accGroup2Form.value.selectedAccounts);
+    this.noTodoList = ["Issue new OAuth"];
+    this.accGroupForm.reset();
+    this.accGroup2Form.reset();
+    this.taskMission = false;
+    
 
   }
 
 
+  closeModal() {
 
-  accgrps2table(accGroups: any){//esta tambien ya nos la vamos a chngr
 
-    this.accountGroups = this.accountGroups.sort((a: any, b: any) => {
-      return (b.organizationName) < (a.organizationName);
-    });
+    this.accGroupForm.reset();
+    this.accGroup2Form.reset();
+    this.taskMission = false;
+    //this.refreshUsers();
 
-  } 
+  }
+
 
   onSubmit() {
 
@@ -108,7 +109,7 @@ export class AccountgroupsComponent implements OnInit {
 
       this.OAuth = this.accGroupForm.value.OAuth;
 
-      this.OAuth = { "OAuth": this.OAuth }
+      this.OAuth = { "OAuth": this.OAuth };
 
       this.service.getAccountGroups(this.OAuth).subscribe(res => {
 
@@ -123,7 +124,7 @@ export class AccountgroupsComponent implements OnInit {
           //this.noTodoList = this.accountGroups.filter((v: any, i: any, a: any) => a.findIndex((t: { id: any; }) => t.id === v.id) === i);
 
 
-          console.log(this.noTodoList);
+          //console.log(this.noTodoList);
       
         }else{
 

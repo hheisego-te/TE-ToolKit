@@ -18,6 +18,8 @@ export class AhcComponent implements OnInit {
 
   HighlightRow: number = -1;
   reportList : any = [];
+  taskMission: boolean = true;
+  ModalTitle: string = "Request new AHC";
 
   constructor(private cookie: CookieService,
               private router: Router,
@@ -40,6 +42,13 @@ export class AhcComponent implements OnInit {
 
     }
 
+
+  }
+
+  closeModal() {
+
+    this.taskMission = false;
+    //this.refreshUsers();
 
   }
 

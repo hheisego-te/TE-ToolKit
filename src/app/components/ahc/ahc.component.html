@@ -6,17 +6,26 @@
         </div>
         <div class="col py-3">
             <!-- * * * * * * * Content Area * * * * * * * -->
-            <app-accountgroups></app-accountgroups>
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">{{ModalTitle}}</h5>
+                            <!-- Modal <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>-->
+                        </div>
+                        <app-accountgroups *ngIf="taskMission"></app-accountgroups>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-placement="top">Request a new Report</button>
 
 
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th><i class="bi-5 bi-trash" data-placement="top" title="Borrar"></i></th>
-                        <th><i class="bi-5 bi-plus-circle" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop" data-placement="top" title="Agregar"></i></th>
-                        <th><i class="bi-5 bi-pencil-square" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop" data-placement="top" title="Editar"></i></th>
+                        <th>Reports<i class="bi-5 bi-trash" data-placement="top" title="Borrar"></i></th>
             
                     </tr>
                     <tr>

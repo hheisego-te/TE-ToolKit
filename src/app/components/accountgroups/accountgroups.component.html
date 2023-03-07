@@ -1,50 +1,61 @@
-<form [formGroup]="accGroupForm" class="p-3 mt-3">
-    <div class="form-field d-flex align-items-center col-md-5">
-        <span class="input-group-text" id="basic-addon3">OAuth</span>
-        <input formControlName="OAuth" type="text" name="OAuth" id="oath-token" placeholder="Paste your OAuth"
-            autocomplete="off" class="form-control" id="basic-addon3" aria-describedby="basic-addon3">
-        <button [disabled]="accGroupForm.invalid" (click)="onSubmit()" type="submit" class="btn btn-primary" id="basic-addon3">Next</button>
+<div class="modal-body">
+    <div class="form-group row" id="users-form">
+
+        <form [formGroup]="accGroupForm" class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center col-md-15">
+                <span class="input-group-text" id="basic-addon3">OAuth</span>
+                <input formControlName="OAuth" type="text" name="OAuth" id="oath-token" placeholder="Paste your OAuth"
+                    autocomplete="off" class="form-control" id="basic-addon3" aria-describedby="basic-addon3">
+                <button [disabled]="accGroupForm.invalid" (click)="onSubmit()" type="submit" class="btn btn-primary"
+                    id="basic-addon3">Next</button>
+            </div>
+        </form>
+        <form [formGroup]="accGroup2Form" (ngSubmit)="onFormSubmit()">
+            <table class="table-info table-striped">
+                <tr *ngIf="this.accountGroups">
+                    <td>Select Organization: </td>
+                    <td>
+                        <select formControlName="selectedOrg" (change)="onOrganizationChange()"
+                            class="form-select form-select-sm">
+                            <option [ngValue]="null" disabled>Choose your Org</option>
+                            <option *ngFor="let org of noTodoList;  let orgg = index" [ngValue]="org.organizationName">
+                                <!--name="selectedOrg" value="{{org.organizationName}}-->
+                                {{ org.organizationName }}
+                            </option>
+                        </select>
+                        <div *ngIf="accGroup2Form.invalid && accGroup2Form.dirty" class="error">
+                            Select acc
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngIf="accGroup2Form.value.selectedOrg">
+                    <td>Select Account Groups: </td>
+                    <td>
+                        <select multiple formControlName="selectedAccounts" class="form-select form-select-sm">
+                            <option *ngFor="let acc of accountsList" [ngValue]="acc">
+                                {{ acc.accountGroupName }}
+                            </option>
+                        </select>
+                        <div *ngIf="accGroup2Form.invalid && accGroup2Form.dirty" class="error">
+                            Press Control to select multiple account groups
+                        </div>
+                    </td>
+                </tr>
+                <!-- <tr *ngIf="accGroup2Form.value.selectedAccounts">
+                    <td><button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button></td>
+                </tr>-->
+            </table>
+        </form>
+
     </div>
-</form>
+</div>
 
+<div class="modal-footer">
 
-<form [formGroup]="accGroup2Form" (ngSubmit)="onFormSubmit()">
-    <table class="table-info table-striped">
-        <tr *ngIf="this.accountGroups">
-            <td>Select Organization: </td>
-            <td>
-                <select formControlName="selectedOrg" (change)="onOrganizationChange()" class="form-select form-select-sm">
-                    <option [ngValue]="null" disabled >Choose your Org</option>
-                    <option *ngFor="let org of noTodoList;  let orgg = index" [ngValue]="org.organizationName"> <!--name="selectedOrg" value="{{org.organizationName}}-->
-                        {{ org.organizationName }}
-                    </option>
-                </select>
-                <div *ngIf="accGroup2Form.invalid && accGroup2Form.dirty" class="error">
-                    Select acc
-                </div>
-            </td>
-        </tr>
-        <tr *ngIf="accGroup2Form.value.selectedOrg">
-            <td>Select Account Groups: </td>
-            <td>
-                <select multiple formControlName="selectedAccounts" class="form-select form-select-sm">
-                    <option *ngFor="let acc of accountsList" [ngValue]="acc">
-                        {{ acc.accountGroupName }}
-                    </option>
-                </select>
-                <div *ngIf="accGroup2Form.invalid && accGroup2Form.dirty" class="error">
-                    Press Control to select multiple account groups
-                </div>
-            </td>
-        </tr>
-        <tr><td>{{accGroup2Form.value.selectedOrg}}</td></tr>
-
-        <tr *ngIf="accGroup2Form.value.selectedAccounts">
-            <td><button type="submit" class="btn btn-primary">Submit</button></td>
-        </tr>
-    </table>
-</form>
-
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Cancelar </button>
+    <button *ngIf="accGroup2Form.value.selectedAccounts" type="submit" class="btn btn-primary"
+        data-bs-dismiss="modal">Submit</button>
+</div>
 
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
