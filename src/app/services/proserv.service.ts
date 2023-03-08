@@ -20,5 +20,11 @@ export class ProservService {
 
   }
 
+  getAsBuilt(cec: any): Observable<any[]> {
+
+    return this.http.get<any>(this.APIurl + '/te-health/' + cec);
+
+  }
+
 
 }

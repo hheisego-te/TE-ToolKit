@@ -17,6 +17,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AccountgroupsComponent } from './components/accountgroups/accountgroups.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { AhcComponent } from './components/ahc/ahc.component';
+import { AssbuiltComponent } from './components/assbuilt/assbuilt.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { AhcComponent } from './components/ahc/ahc.component';
     DashboardComponent,
     AccountgroupsComponent,
     MenuComponent,
-    AhcComponent
+    AhcComponent,
+    AssbuiltComponent
    
   ],
   imports: [

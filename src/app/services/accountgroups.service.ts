@@ -19,7 +19,7 @@ export class AccountgroupsService {
 
   getAccountGroups(OAuth: any): Observable<any> {
 
-    return this.http.put(this.APIurl, OAuth);
+    return this.http.put(this.APIurl, OAuth); //creo que el patch aplica "mas mejor"
 
   }
 }
