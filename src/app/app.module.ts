@@ -18,6 +18,7 @@ import { AccountgroupsComponent } from './components/accountgroups/accountgroups
 import { MenuComponent } from './components/menu/menu.component';
 import { AhcComponent } from './components/ahc/ahc.component';
 import { AssbuiltComponent } from './components/assbuilt/assbuilt.component';
+import { PcapComponent } from './components/pcap/pcap.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AssbuiltComponent } from './components/assbuilt/assbuilt.component';
     AccountgroupsComponent,
     MenuComponent,
     AhcComponent,
-    AssbuiltComponent
+    AssbuiltComponent,
+    PcapComponent
    
   ],
   imports: [
