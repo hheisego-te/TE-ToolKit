@@ -17,6 +17,7 @@ export class AssbuiltComponent implements OnInit {
   reportList: any = [];
   taskMission: boolean = true;
   ModalTitle: string = "Request AS-Built";
+  //assRequest: any = {"cec": this.cookie.get("cec"), "mission": "Ass-built"};
 
 
   constructor(private cookie: CookieService,
@@ -31,6 +32,8 @@ export class AssbuiltComponent implements OnInit {
 
 
     if (this.cookie.check('cec') && this.cookie.check('whois')) {
+
+      this.refreshReports();
 
       console.log("ya estamos")
 
@@ -60,13 +63,10 @@ export class AssbuiltComponent implements OnInit {
 
   refreshReports() {
 
+    
     this.proService.getAsBuilt(this.cookie.get('cec')).subscribe(data => {
 
       this.reportList = data;
-
-      console.log(this.cookie.get('cec'))
-
-      console.log(this.reportList)
 
     });
   }

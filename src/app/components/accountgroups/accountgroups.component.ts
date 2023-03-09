@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountgroupsService } from 'src/app/services/accountgroups.service';
+import { ProservService } from 'src/app/services/proserv.service';
 import { OrderPipe } from 'ngx-order-pipe';
 import Swal from 'sweetalert2';
 
@@ -26,6 +27,7 @@ export class AccountgroupsComponent implements OnInit {
   selectedRowIds: Set<number> = new Set<number>();
   order: string = 'organizationName';
   private reportRequest: any = [];
+  private reportResponse: any = [];
 
 
 
@@ -33,6 +35,7 @@ export class AccountgroupsComponent implements OnInit {
               private account2: FormBuilder,
               private service: AccountgroupsService,
               private orderPipe: OrderPipe,
+              private request: ProservService
             ){
     
   }
@@ -85,9 +88,28 @@ export class AccountgroupsComponent implements OnInit {
     //this.accGroup2Form.value.selectedOrg = '';
     
     this.reportRequest = this.accGroup2Form.value.selectedAccounts;
-    this.reportRequest.mission = this.mission;
-    console.log(this.mission);
+    //this.reportRequest.mission = this.mission;
+    this.reportRequest.push({"Mission": this.mission})
+
     console.log(this.reportRequest);
+
+    this.request.newReport(this.reportRequest).subscribe(res => {
+
+      this.reportResponse = res
+
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: "falta el if",
+        timerProgressBar: true,
+        showConfirmButton: false,
+        timer: 2345,
+
+      })
+    
+    });
+
+
     this.noTodoList = ["Issue new OAuth"];
     this.accGroupForm.reset();
     this.accGroup2Form.reset();

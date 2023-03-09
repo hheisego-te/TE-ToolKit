@@ -22,7 +22,13 @@ export class ProservService {
 
   getAsBuilt(cec: any): Observable<any[]> {
 
-    return this.http.get<any>(this.APIurl + '/te-health/' + cec);
+    return this.http.get<any>(this.APIurl + '/as-built/' + cec);
+
+  }
+
+  newReport(request: any) {
+
+    return this.http.post(this.APIurl + '/request-report/', request);
 
   }
 
